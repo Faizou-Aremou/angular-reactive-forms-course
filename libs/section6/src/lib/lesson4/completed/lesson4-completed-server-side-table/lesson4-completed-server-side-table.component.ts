@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { Sort } from '@angular/material/sort';
 import { Observable } from 'rxjs';
 import {
@@ -33,8 +33,8 @@ export class Lesson4CompletedServerSideTableComponent implements OnInit {
   >;
   @ViewChild(Lesson1CompletedHeroGridComponent, { static: true })
   gridComponent: Lesson1CompletedHeroGridComponent;
-  tableForm = new FormControl(defaultTableFormValue);
-  columnFilterForm = new FormControl(
+  tableForm = new UntypedFormControl(defaultTableFormValue);
+  columnFilterForm = new UntypedFormControl(
     heroKeys.reduce((acc, key) => ({ ...acc, [key]: '' }), {})
   );
   _heroInfo$: Observable<{ heroes: Hero[]; matchingResults: number }>;

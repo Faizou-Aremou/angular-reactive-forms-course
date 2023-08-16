@@ -150,10 +150,6 @@ import { MatButtonModule } from '@angular/material/button';
     NumberConfigSettingFormComponent,
     StringConfigSettingFormComponent,
     WizardFormComponent
-  ],
-  entryComponents: [
-    CompletedConfimationDialogComponent,
-    CompletedDiscardChangesDialogComponent
   ]
 })
 export class Section5Module {}

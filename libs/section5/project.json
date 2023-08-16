@@ -1,0 +1,32 @@
+{
+  "name": "section5",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/section5/src",
+  "prefix": "forms-course",
+  "targets": {
+    "lint": {
+      "executor": "@angular-devkit/build-angular:tslint",
+      "options": {
+        "tsConfig": [
+          "libs/section5/tsconfig.lib.json",
+          "libs/section5/tsconfig.spec.json"
+        ],
+        "exclude": ["**/node_modules/**"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "libs/section5/jest.config.js",
+        "tsConfig": "libs/section5/tsconfig.spec.json",
+        "setupFile": "libs/section5/src/test-setup.ts"
+      }
+    }
+  },
+  "generators": {
+    "@nx/angular:component": {
+      "styleext": "scss"
+    }
+  }
+}

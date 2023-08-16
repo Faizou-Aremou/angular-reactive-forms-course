@@ -1,0 +1,91 @@
+{
+  "name": "forms-course",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "generators": {
+    "@nx/workspace:component": {
+      "style": "scss"
+    }
+  },
+  "sourceRoot": "apps/forms-course/src",
+  "prefix": "forms-course",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "options": {
+        "outputPath": "dist/apps/forms-course",
+        "index": "apps/forms-course/src/index.html",
+        "main": "apps/forms-course/src/main.ts",
+        "polyfills": "apps/forms-course/src/polyfills.ts",
+        "tsConfig": "apps/forms-course/tsconfig.app.json",
+        "assets": [
+          "apps/forms-course/src/favicon.ico",
+          "apps/forms-course/src/assets"
+        ],
+        "styles": ["apps/forms-course/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/forms-course/src/environments/environment.ts",
+              "with": "apps/forms-course/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "extractCss": true,
+          "namedChunks": false,
+          "aot": true,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "buildOptimizer": true,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {
+        "browserTarget": "forms-course:build"
+      },
+      "configurations": {
+        "production": {
+          "browserTarget": "forms-course:build:production"
+        }
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "forms-course:build"
+      }
+    },
+    "lint": {
+      "executor": "@angular-devkit/build-angular:tslint",
+      "options": {
+        "tsConfig": [
+          "apps/forms-course/tsconfig.app.json",
+          "apps/forms-course/tsconfig.spec.json"
+        ],
+        "exclude": ["**/node_modules/**"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "apps/forms-course/jest.config.js",
+        "tsConfig": "apps/forms-course/tsconfig.spec.json",
+        "setupFile": "apps/forms-course/src/test-setup.ts"
+      }
+    }
+  }
+}

@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot,
-  UrlTree,
-  CanDeactivate
-} from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CompletedWizardComponent } from './completed-wizard/completed-wizard.component';
 import { take } from 'rxjs/operators';
@@ -13,7 +8,7 @@ import { take } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CompletedConfirmDiscardChangesGuard
-  implements CanDeactivate<CompletedWizardComponent> {
+   {
   canDeactivate(
     component: CompletedWizardComponent,
     currentRoute: ActivatedRouteSnapshot,
