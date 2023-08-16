@@ -51,13 +51,12 @@ export class SectionShellComponent implements OnInit {
           x instanceof ActivationEnd && x.snapshot.component != null
       ),
       map(x => {
-        
-        console.log('x', x)
+        console.log('parent', x.snapshot.parent)
         return {
         sectionTitle: x.snapshot.data.name,
         sectionSubtitle: x.snapshot.data.subtitle,
         lessonTitle: x.snapshot.data.navText,
-        sectionLessons: x.snapshot.parent.routeConfig['_loadedConfig']?.routes
+        sectionLessons: x.snapshot.parent.routeConfig['_loadedRoutes']
           // .filter(y => y.data && !y.path.endsWith('-completed'))
           .filter(y => y.data)
           .map(
@@ -72,10 +71,8 @@ export class SectionShellComponent implements OnInit {
         sectionPath: x.snapshot.parent.url[0].path,
         next: x.snapshot.data.next,
         prev: x.snapshot.data.prev
-      }}),
-      tap((value)=> console.log('tap', value ))
+      }})
     );
-   this.routeData$.subscribe((v)=> console.log('test',v))
   }
 
   toggleLessonLinks() {
