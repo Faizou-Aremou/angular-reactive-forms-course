@@ -9,7 +9,7 @@
   </forms-course-instructions>
 
   What is your favorite multiple of 5 that is greater than 0 and less than 30?
-  <input type="number" />
+  <input type="number" min="5" max="30" [formControl]="control" />
 </div>
 
 <hr />
@@ -45,10 +45,10 @@
       while our `onUpdate` for the control is set to "blur".
     </p>
   </forms-course-instructions>
-  <pre>Your favorite multiple of 5 is:</pre>
+  <pre>Your favorite multiple of 5 is:{{ control.value }}</pre>
   <h5>History</h5>
   <ul>
-    <li>List each historical value here.</li>
+    <li *ngFor="let historyItem of history">{{ historyItem }}</li>
   </ul>
-  <button>Reset History</button>
+  <button (click)="clearHistory()">Reset History</button>
 </div>

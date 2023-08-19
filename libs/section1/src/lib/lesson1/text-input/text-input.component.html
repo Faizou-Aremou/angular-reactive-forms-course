@@ -1,10 +1,8 @@
 <div>
   <forms-course-instructions>
-    <p>
-      First, let's attach a reactive FormControl to the text input element:
-    </p>
+    <p>First, let's attach a reactive FormControl to the text input element:</p>
   </forms-course-instructions>
-  My name is: <input type="text" />
+  My name is: <input type="text" [formControl]="control" />
 </div>
 
 <hr />
@@ -17,7 +15,7 @@
     </p>
   </forms-course-instructions>
 
-  <pre>The control's value is: ""</pre>
+  <pre>The control's value is: {{ control.value }}</pre>
 </div>
 
 <hr />
@@ -43,9 +41,7 @@
     </p>
   </forms-course-instructions>
 
-  <button (click)="toggleFormEnabled()">
-    Disable/Enable Control
-  </button>
+  <button (click)="toggleFormEnabled()">{{control.enabled? 'Disable': 'Enable'}} control</button>
 </div>
 
 <hr />
@@ -59,7 +55,7 @@
   </forms-course-instructions>
 
   <ul>
-    <li>Place each history item in a list item like this.</li>
+    <li *ngFor="let historyItem of history"> {{ historyItem }} </li>
   </ul>
 
   <button (click)="clearHistory()">Clear History</button>
