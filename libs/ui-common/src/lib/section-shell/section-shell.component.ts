@@ -51,7 +51,6 @@ export class SectionShellComponent implements OnInit {
           x instanceof ActivationEnd && x.snapshot.component != null
       ),
       map(x => {
-        console.log('parent', x.snapshot.parent)
         return {
         sectionTitle: x.snapshot.data.name,
         sectionSubtitle: x.snapshot.data.subtitle,

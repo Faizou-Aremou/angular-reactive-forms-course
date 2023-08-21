@@ -7,12 +7,12 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./other-controls.component.css']
 })
 export class OtherControlsComponent implements OnInit {
-  radioControl = new FormControl('Blue');
-  selectControl = new FormControl('Blue');
-  rangeControl = new FormControl(5);
-  dateControl = new FormControl('2019-08-13');
-  timeControl = new FormControl('09:00');
-  colorControl = new FormControl('#0096ff');
+  radioControl = new FormControl<string>('Blue');
+  selectControl = new FormControl<string>('Blue');
+  rangeControl = new FormControl<number>(5);
+  dateControl = new FormControl<string>('2019-08-13');
+  timeControl = new FormControl<string>('09:00');
+  colorControl = new FormControl<string>('#0096ff');
 
   constructor() {}
 

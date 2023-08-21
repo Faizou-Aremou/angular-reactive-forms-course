@@ -23,13 +23,14 @@ export class NumberInputComponent implements OnInit, OnDestroy {
     this.control.valueChanges
       .pipe(takeUntil(this._destroying$), startWith(this.control.value))
       .subscribe((value) => {
+        this.history = [value, ...this.history];
         if (value > UPPER_NUMBER) {
           this.control.setValue(UPPER_NUMBER);
         } else if (value < LOWER_NUMBER) {
           this.control.setValue(LOWER_NUMBER);
+        } else if (value % 5 !== 0) {
+          this.control.setValue(value - (value % 5));
         }
-
-        this.history = [...this.history, value];
       });
   }
   clearHistory() {
