@@ -11,7 +11,7 @@
   "prefix": "forms-course",
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@nx/angular:webpack-browser",
       "options": {
         "outputPath": "dist/apps/forms-course",
         "index": "apps/forms-course/src/index.html",
@@ -35,7 +35,7 @@
           ],
           "optimization": true,
           "outputHashing": "all",
-          "sourceMap": false,
+          "sourceMap": true,
           "extractCss": true,
           "namedChunks": false,
           "aot": true,
@@ -53,13 +53,18 @@
       }
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "executor": "@nx/angular:webpack-dev-server",
       "options": {
         "browserTarget": "forms-course:build"
       },
       "configurations": {
         "production": {
-          "browserTarget": "forms-course:build:production"
+          "browserTarget": "forms-course:build:production",
+          "sourceMap": true
+        },
+        "development": {
+          "browserTarget": "app:build:development",
+          "sourceMap": true
         }
       }
     },

@@ -51,10 +51,10 @@ export class WizardComponent implements OnDestroy {
         })
       )
       .subscribe();
-    // this._formIsValid$ = this.control.statusChanges.pipe(
-    //   startWith(this.control.status),
-    //   map(status => status === 'VALID')
-    // );
+    this._formIsValid$ = this.control.statusChanges.pipe(
+      startWith(this.control.status),
+      map(status => status === 'VALID')
+    );
     this._formHasChanges$ = of(true); // implement your change detection here!!! (in lesson 3)
     this.submitButtonDisabled$ = combineLatest([
       this._formIsValid$,
@@ -69,14 +69,14 @@ export class WizardComponent implements OnDestroy {
     this.discardChangesButtonDisabled$ = this._formHasChanges$.pipe(
       map(hasChanges => !hasChanges)
     );
-    // this.savePending$
-    //   .pipe(
-    //     takeUntil(this._destroying$),
-    //     tap(savePending =>
-    //       savePending ? this.control.disable() : this.control.enable()
-    //     )
-    //   )
-    //   .subscribe();
+    this.savePending$
+      .pipe(
+        takeUntil(this._destroying$),
+        tap(savePending =>
+          savePending ? this.control.disable() : this.control?.enable()
+        )
+      )
+      .subscribe();
   }
 
   confirmSave() {

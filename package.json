@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "nx serve forms-course",
     "build": "ng build",
     "test": "ng test",
     "lint": "nx lint && ng lint",

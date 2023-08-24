@@ -46,7 +46,7 @@ export class WizardFormComponent implements OnDestroy, ControlValueAccessor {
   registerOnTouched(fn) {}
 
   setDisabledState(isDisabled: boolean) {
-    isDisabled ? this.form.disable() : this.form.enable();
+    isDisabled ? this.form?.disable() : this.form?.enable();
   }
 
   ngOnDestroy() {
