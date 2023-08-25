@@ -55,7 +55,7 @@ export class BooleanConfigSettingFormComponent
   }
 
   setDisabledState(isDisabled: boolean) {
-    isDisabled ? this.control.disable() : this.control.enable();
+    isDisabled ? this.control?.disable() : this.control?.enable();
   }
 
   ngOnChanges(changes: SimpleChanges) {
