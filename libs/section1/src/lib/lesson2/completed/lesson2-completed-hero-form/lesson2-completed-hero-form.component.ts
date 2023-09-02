@@ -11,6 +11,7 @@ export interface Hero {
   };
 }
 
+
 @Component({
   selector: 'forms-course-lesson2-completed-hero-form',
   templateUrl: './lesson2-completed-hero-form.component.html',

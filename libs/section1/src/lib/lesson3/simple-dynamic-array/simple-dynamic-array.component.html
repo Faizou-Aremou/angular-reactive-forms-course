@@ -1,7 +1,7 @@
 <forms-course-instructions>
   <p>
     For this simple dynamic forms array, we'll start out with the html template
-    below. Note that the buttons in the template belwo are already wired up to
+    below. Note that the buttons in the template below are already wired up to
     methods in the component class.
   </p>
   <p>
@@ -15,11 +15,13 @@
   </p>
 </forms-course-instructions>
 
-<div>
-  <label for="control-0">Item 0: </label>
-  <input type="text" id="control-0" />
-  <button (click)="removeControl(0)">Remove</button>
-</div>
-<button (click)="addControl()">Add New Control To The Array</button>
+<form>
+  <div *ngFor="let control of formArray.controls; let index= index">
+    <label [for]="'control-' + index">Item {{index}}: </label>
+    <input type="text" [id]="'control-' + index" [formControl]="control" />
+    <button (click)="removeControl(index)">Remove</button>
+  </div>
+  <button (click)="addControl()">Add New Control To The Array</button>
 
-<pre>Form Array value: </pre>
+  <pre>Form Array value:{{ formArray.value | json }} </pre>
+</form>
