@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Hero } from '../../lesson2/completed/lesson2-completed-hero-form/lesson2-completed-hero-form.component';
 import { FormGroup, FormControl, FormArray } from '@angular/forms';
 import { animations } from '@forms-course/ui-common';
@@ -6,6 +6,7 @@ import {
   HeroForm,
   StatsForm,
 } from '../../lesson2/hero-form/hero-form.component';
+import { Subject, takeUntil } from 'rxjs';
 
 export interface Party {
   name: string;
@@ -46,20 +47,26 @@ const createHeroForm = (hero?: Hero): FormGroup =>
   styleUrls: ['./party-form.component.css'],
   animations,
 })
-export class PartyFormComponent implements OnInit {
+export class PartyFormComponent implements OnInit, OnDestroy {
   partyForm = new FormGroup<PartyForm>({
     name: new FormControl<string>(''),
     partySize: new FormControl<number>(0),
     heroes: new FormArray<FormGroup<HeroForm>>([]),
   });
   possiblePartySizes = [1, 2, 3, 4, 5, 6];
+  private _destroying = new Subject<void>();
 
   constructor() {}
+  ngOnDestroy(): void {
+    this._destroying.next();
+  }
 
   ngOnInit() {
-    this.partySize.valueChanges.pipe().subscribe((size) => {
-      this.updateHeroesToNewSize(size);
-    });
+    this.partySize.valueChanges
+      .pipe(takeUntil(this._destroying))
+      .subscribe((size) => {
+        this.updateHeroesToNewSize(size);
+      });
   }
 
   get heroes() {
